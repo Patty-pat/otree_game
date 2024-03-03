@@ -1,0 +1,28 @@
+{{ block title }}
+    Fragebogen
+{{ endblock }}
+
+
+{{ block content }}
+
+<p>
+    <b>Im Allgemeinen, wie sehr sind Sie bereit oder nicht bereit, Risiken einzugehen?</b>
+</p>
+<p>
+    Sie sehen unten eine Skala von 0 bis 10, auf der 0 bedeutet <i>&bdquo;überhaupt nicht bereit, Risiken einzugehen &ldquo;</i> und 10 bedeutet <i>&bdquo;sehr bereit, Risiken einzugehen &ldquo;</i>.
+    </p>
+<p>
+    {{ formfields }}
+</p>
+
+    {{ next_button }}
+
+<script>
+    var likertScales = document.getElementsByClassName("controls")
+    for (let i = 0; i < likertScales.length; i++) {
+        var temp = likertScales[i].innerHTML;
+        likertScales[i].innerHTML = "überhaupt nicht&nbsp;&nbsp;&nbsp;&nbsp;" + temp + "sehr";
+    }
+</script>
+    
+{{ endblock }}

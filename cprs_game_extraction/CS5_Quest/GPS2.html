@@ -1,0 +1,26 @@
+{{ block title }}
+    Fragebogen
+{{ endblock }}
+
+
+{{ block content }}
+<p>
+    <b>Wir fragen Sie nun nach Ihrer Bereitschaft sich in einer bestimmten Art zu verhalten.</b> Bitte verwenden Sie wieder eine Skala von 0 bis 10.  </p>
+<p>
+    0 bedeutet <i> &bdquo;überhaupt nicht bereit, dies zu tun&ldquo;</i> und 10 <i> &bdquo;sehr bereit, dies zu tun&ldquo;</i>.
+</p>
+<p>
+    {{ formfields }}
+</p>
+
+    {{ next_button }}
+
+<script>
+    var likertScales = document.getElementsByClassName("controls")
+    for (let i = 0; i < likertScales.length; i++) {
+        var temp = likertScales[i].innerHTML;
+        likertScales[i].innerHTML = "überhaupt nicht&nbsp;&nbsp;&nbsp;&nbsp;" + temp + "perfekt";
+    }
+</script>
+
+{{ endblock }}

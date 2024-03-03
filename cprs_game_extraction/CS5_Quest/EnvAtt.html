@@ -1,0 +1,27 @@
+{{ block title }}
+    Fragebogen
+{{ endblock }}
+
+{{ block content }}
+<p>
+    Bitte beantworten Sie die folgenden Fragen auf einer Skala von 1 bis 7.
+</p>
+<p>
+    1 bedeutet dabei <i>&bdquo;stimme gar nicht zu&ldquo;</i>, 7 bedeutet <i>&bdquo;stimme voll zu&ldquo;</i>.
+</p>
+<p>
+{{ for field in form }}
+<div style="padding-bottom: 3%;">{{ formfield field }}</div>
+{{ endfor }}
+</p>
+{{ next_button }}
+
+<script>
+    var likertScales = document.getElementsByClassName("controls")
+    for (let i = 0; i < likertScales.length; i++) {
+        var temp = likertScales[i].innerHTML;
+        likertScales[i].innerHTML = "stimme gar nicht zu&nbsp;&nbsp;&nbsp;&nbsp;" + temp + "stimme voll zu";
+    }
+</script>
+
+{{ endblock }}

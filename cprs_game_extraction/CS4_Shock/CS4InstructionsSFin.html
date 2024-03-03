@@ -1,0 +1,134 @@
+{{ block title }}
+    Instruktionen für Teil {{C.STAGE }}
+{{ endblock }}
+
+{{ block content }}
+
+<p>
+    In dem vorherigen Teil dieses Spiels bestand die Chance, dass Ihr Gemeinschaftswald von einem Klimaschock betroffen ist und dadurch Ihre Ressourcenkapazität verringert wird.
+</p>
+<p>
+        In diesem Teil ist allerdings ein Klimaschock direkt zu Beginn eingetreten, wodurch ein Waldbrand ausgelöst wurde.
+        Das bedeutet, dass nun die ursprüngliche Waldgröße {{C.INITIAL_TREES_OLD}} um 50% reduziert wird, sodass nur {{C.INITIAL_TREES_OLD}}&nbsp; &times; {{C.MULTIPLIER_SHOCK}} &equals; {{C.INITIAL_TREES}} Bäume übrig bleiben. 
+        <b>Ihre Gruppe startet das Spiel also nun nicht mit 100 Bäumen, sondern mit 50 Bäumen.</b>
+</p>
+<p>
+    <b>Ihre Entscheidungssituation ist wie in Teil 1, mit einer Ausnahme:</b> 
+    <ul>
+        <li>Die maximale Anzahl an Bäumen, die Sie in jeder Runde entnehmen können, ist kein fixer Betrag mehr, sondern hängt von dem Bestand des Waldes ab. Mit anderen Worten, je weniger Bäume im Wald vorhanden sind, desto geringer auch Ihre Möglichkeiten, Bäume zu entnehmen. 
+            <p>
+            Die minimale und maximale Anzahl an Bäumen, die Sie pro Runde in verschiedenen Szenarien entnehmen können, ist unten in der Tabelle aufgelistet:
+        </p>
+            <style>
+                table {
+                    border-collapse: collapse;
+                    width: 100%;
+                }
+            
+                th, td {
+                    text-align: center;
+                    border: 1px solid black;
+                    padding: 8px;
+                }
+            </style>
+            <table border="1">
+            <tr>
+                <th>Aktuelle Anzahl an Bäumen pro Runde</th>
+                <th>Minimal</th>
+                <th>Maximal</th>
+            </tr>
+            <tr>
+                <td>&ge;21</td>
+                <td>0</td>
+                <td>7</td>
+            </tr>
+            <tr>
+                <td>&ge;18</td>
+                <td>0</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td>&ge;15</td>
+                <td>0</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>&ge;12</td>
+                <td>0</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td>&ge;9</td>
+                <td>0</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>&ge;6</td>
+                <td>0</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>&ge;3</td>
+                <td>0</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>von 0 bis &lt;3</td>
+                <td>0</td>
+                <td>0</td>
+            </tr>
+        </table>
+        </li>
+        <li>       
+        Die Anzahl an Bäumen, die Sie in einer Runde fällen dürfen, wird Ihnen vor Ihrer Entscheidung mitgeteilt.
+        </li>
+        <li>
+        Falls der Gemeinschaftswald in einer beliebigen Runde unter 3 Bäume fällt, können Sie und Ihre Gruppenmitglieder die verbliebenen Bäume nicht entnehmen, es sei denn, der Wald wächst in den folgenden Runden auf mindestens 3 Bäume wieder an.
+    </li>
+    </ul>
+    
+<p>
+    Ansonsten gibt es keine Änderungen im Vergleich zu Teil 1. 
+    Die Anzahl der Punkte, die Sie für das Abholzen von Bäumen und die verbleibenden Bäume im Wald erhalten, bleibt gleich.
+    Ihre Gruppe bleibt dieselbe wie zuvor.
+
+    <p>
+        <button type="button" id="instructions-button" class="btn btn-outline-primary">Instruktionen aus Teil 1 noch einmal anzeigen</button>
+    </p>
+    <div style="display: none;" id="instructions-box" class="card card-body border-primary">
+    {{ include "_templates/global/Instructions.html" }}
+    </div>
+</p> 
+    
+  
+<br>    
+<div id="next-button" style="display: none;">
+    {{ next_button }}
+</div>
+
+{{ endblock }}
+
+
+{{ block scripts }}
+
+<script>
+
+setTimeout(function() {
+    document.getElementById("next-button").style.display = "block";
+}, 0.5*60*1000) // 30 sec until next_button appears
+
+document.getElementById("instructions-button").addEventListener("click", function() {
+    let instrBox = document.getElementById("instructions-box")
+    let instrButton = document.getElementById("instructions-button")
+        if (instrBox.style.display == "none") {
+            instrBox.style.display = "block";
+            instrButton.innerHTML = "Instruktionen verbergen";
+        } else {
+            instrBox.style.display = "none";
+            instrButton.innerHTML = "Instruktionen aus Teil 1 noch einmal anzeigen";
+    }
+})
+
+</script>
+
+{{ endblock }}

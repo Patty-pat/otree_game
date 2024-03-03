@@ -1,0 +1,23 @@
+{{ extends 'otree/Page.html' }}
+
+{{ block style }}
+<style>
+.otree-timer {
+    visibility: hidden;
+} /* doesn't work! Style property undefined! */
+</style>
+{{ endblock }}
+
+{{ block content }}
+
+{{if C.STAGE < 3}}
+<p>
+    Teil {{ next_stage }} beginnt in Kürze.
+</p>
+{{else}}
+<p>
+    Der Fragebogen beginnt in Kürze.
+</p>
+{{endif}}
+
+{{ endblock }}

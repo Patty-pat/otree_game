@@ -1,0 +1,77 @@
+{{ block title }}Fragebogen{{ endblock }}
+
+{{ block content }}
+
+<div id="why-1">
+<p>
+In Teil 1 haben Sie über die fünf Runden insgesamt {{total_take_1}} von {{C.MAX_TREES_TAKE}} möglichen 
+Bäumen entnommen.
+</p>
+{{ formfield "why_pt1" }} <button type="button" class="btn btn-primary" id="why-1-button">Weiter</button>
+</div>
+
+<div id="why-2" style="display: none;">
+<p>
+In Teil 2 haben Sie über die fünf Runden insgesamt {{total_take_2}} von {{C.MAX_TREES_TAKE}} möglichen 
+Bäumen entnommen.
+
+</p>
+{{ formfield "why_pt2" }} <button type="button" class="btn btn-primary" id="why-2-button">Weiter</button>
+</div>
+    
+<div id="why-3" style="display: none;">
+<p>
+In Teil 3 haben Sie über die fünf Runden insgesamt {{total_take_3}} von {{C.MAX_TREES_TAKE}} möglichen Bäumen entnommen.
+
+</p>
+{{ formfield "why_pt3" }} <button type="button" class="btn btn-primary" id="why-3-button">Weiter</button>
+</div>  
+
+<div id="opt-N" style="display: none;">
+<p>{{ formfield "optimumN" }}</p>
+</div>
+
+
+<br>
+<div id="next-button" style="display: none;">
+{{ next_button }}
+</div>
+
+{{ endblock }}
+
+{{ block scripts }}
+<script>
+
+document.getElementById("why-1-button").addEventListener("click", function(){
+    if (document.getElementById("id_why_pt1").value != ""){
+        document.getElementById("why-1").style.display = "none";
+        document.getElementById("why-2").style.display = "block";
+    } else {
+        alert("Bitte füllen Sie dieses Feld aus.");
+    }
+});
+
+document.getElementById("why-2-button").addEventListener("click", function(){
+    if (document.getElementById("id_why_pt2").value != ""){
+        document.getElementById("why-2").style.display = "none";
+        document.getElementById("why-3").style.display = "block";
+    } else {
+        alert("Bitte füllen Sie dieses Feld aus.")
+    }
+});
+
+document.getElementById("why-3-button").addEventListener("click", function(){
+    if (document.getElementById("id_why_pt3").value != ""){
+        document.getElementById("why-3").style.display = "none";
+        document.getElementById("opt-N").style.display = "block";
+    } else {
+        alert("Bitte füllen Sie dieses Feld aus.")
+    }
+});
+
+document.getElementById("opt-N").addEventListener("click", function() {
+    document.getElementById("next-button").style.display = "block";
+});
+
+</script>
+{{ endblock}}

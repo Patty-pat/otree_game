@@ -1,0 +1,31 @@
+{{ block title }}
+    Fragebogen
+{{ endblock }}
+
+
+{{ block content }}
+<p>
+    {{ formfield "age" }}
+</p>
+<p>
+    {{ formfield "gender" }}
+</p>
+<p>
+    {{ formfield "highest_ed" }}
+</p>
+<p>
+    {{ formfield "study_field" }}
+</p>
+
+<p>
+    Stellen Sie sich eine Leiter vor (siehe Abbildung unten), die zeigt, welche Stellung Menschen in der Gesellschaft innehaben. Oben auf der Leiter stehen die Menschen, denen es am besten geht - diejenigen, die das meiste Geld, die beste Ausbildung und die besten Arbeitsplätze haben. Ganz unten stehen die Menschen, denen es am schlechtesten geht - sie haben das wenigste Geld, die geringste Bildung und die schlechteste oder gar keine Arbeit. Je weiter oben Sie sich auf dieser Leiter befinden, desto näher sind Sie den Menschen an der Spitze, und je weiter unten Sie sich befinden, desto näher sind Sie den Menschen am unteren Ende.
+</p>
+<img src="{{ static 'ladder3.jpg' }}">
+<p>
+    {{ formfield 'social_position' }}
+</p>
+
+<br>
+{{ next_button }}
+
+{{ endblock }}

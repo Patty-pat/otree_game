@@ -1,0 +1,349 @@
+{{ block styles }}
+
+<style>
+
+.forest {
+  padding: 2pt;
+  display: grid;
+  width: max-content;
+  grid-template-columns: repeat(20, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 1pt;
+}
+
+.cell {
+  width: 45px;
+  height: 45px;
+  position: relative;
+}
+
+.cell img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+}
+
+</style>
+
+{{ endblock}}
+
+
+{{ block title }}
+    Ein Beispiel
+{{ endblock }}
+
+{{ block content }}
+<p>
+Im Folgenden wird die Situation, in der Sie sich in diesem Teil befinden, anhand eines Beispiels dargestellt. Dieses Beispiel umfasst 3&nbsp;Runden.
+</p>
+<p><b>Bitte beachten Sie: Sie werden Ihre Entscheidungen nicht über 3, sondern über 5&nbsp;Runden hinweg treffen, und zu Beginn von Runde&nbsp;1 werden {{C.INITIAL_TREES}}&nbsp;Bäume im Wald stehen.</b>
+</p>
+<br>
+<h3>
+Runde&nbsp;1
+</h3>
+<br>
+<h4>Zustand des Waldes zu Beginn von Runde&nbsp;1</h4>
+<p>
+Zu Beginn der Runde sind 65&nbsp;Bäume im Wald vorhanden. 
+</p>
+
+<div id="forest-1" class="forest"></div>
+{# Image #}
+<br>
+<h4>Entscheidungen der drei Gruppenmitglieder</h4>
+
+<p><ul>
+  <li>Gruppenmitglied&nbsp;A entnimmt 5&nbsp;Bäume.</li>
+  <li>Gruppenmitglied&nbsp;B entnimmt 2&nbsp;Bäume.</li>
+  <li>Gruppenmitglied&nbsp;C entnimmt 3&nbsp;Bäume.</li>
+</ul></p>
+
+<p>
+Die gesamte Gruppe hat 10&nbsp;Bäume entnommen.
+</p>
+<p>
+<b>Bitte beachten Sie: Sie haben später lediglich die Information, wie viele Bäume Sie und Ihre Gruppe als 
+Ganzes entnommen haben.</b>
+</p>
+
+<h4>Zustand des Waldes nach der Entnahme</h4>
+<p>
+  Zu Beginn der Runde sind 65&nbsp;Bäume im Wald vorhanden. Die Gruppe entnimmt 10&nbsp;Bäume. Nach der Entnahme sind 55&nbsp;Bäume vorhanden.
+</p>
+
+<div id="forest-2" class="forest"></div>
+{# Image #}
+<br>
+<h4>Verdienst in Runde&nbsp;1</h4>
+<h5>Gruppenmitglied&nbsp;A</h5>
+<p>
+Als Startguthaben erhält Gruppenmitglied&nbsp;A 50&nbsp;Punkte. 
+</p>
+<p>Gruppenmitglied&nbsp;A erhält 10&nbsp;Punkte für die entnommenen Bäume. In dieser Runde erhält Gruppenmitglied&nbsp;A insgesamt 10&nbsp;Punkte.
+</p>
+<p>
+Nach dieser Runde hat Gruppenmitglied&nbsp;A 50&nbsp;Punkte Startguthaben + 10&nbsp;Punkte aus entnommenen Bäumen = 60&nbsp;Punkte.
+</p>
+
+<h5>Gruppenmitglied&nbsp;B</h5>
+<p>
+  Als Startguthaben erhält Gruppenmitglied&nbsp;B 50&nbsp;Punkte. 
+  </p>
+<p>Gruppenmitglied&nbsp;B erhält 4&nbsp;Punkte für die entnommenen Bäume. In dieser Runde erhält Gruppenmitglied&nbsp;B insgesamt 4&nbsp;Punkte.
+</p>
+<p>
+  Nach dieser Runde hat Gruppenmitglied&nbsp;B 50&nbsp;Punkte Startguthaben + 4&nbsp;Punkte aus entnommenen Bäumen = 54&nbsp;Punkte.
+</p>
+
+<h5>Gruppenmitglied&nbsp;C</h5>
+<p>
+  Als Startguthaben erhält Gruppenmitglied&nbsp;C 50&nbsp;Punkte. 
+  </p>
+<p>
+  Gruppenmitglied&nbsp;C erhält 6&nbsp;Punkte für die entnommenen Bäume. In dieser Runde erhält Gruppenmitglied&nbsp;C insgesamt 6&nbsp;Punkte.
+</p>
+<p>
+  Nach dieser Runde hat Gruppenmitglied&nbsp;C 50&nbsp;Punkte Startguthaben + 6&nbsp;Punkte aus entnommenen Bäumen = 56&nbsp;Punkte.
+</p>
+
+<h4>Zustand des Waldes am Ende von Runde&nbsp;1</h4>
+<p>Nach der Entnahme sind 55&nbsp;Bäume vorhanden. Aufgrund der Wachstumsrate von 10&#8239;% wachsen 5,5&nbsp;Bäume nach. Am Ende der Runde sind 60,5&nbsp;Bäume vorhanden.</p>
+<div id="forest-3" class="forest"></div>
+{# Image #}
+<br>
+<br>
+<h3>
+Runde&nbsp;2
+</h3>
+
+<p>
+Zu Beginn der Runde sind 60,5&nbsp;Bäume im Wald vorhanden. 
+</p>
+
+<div id="forest-4" class="forest"></div>
+{# Image #}
+<br>
+<h4>Entscheidungen der drei Gruppenmitglieder</h4>
+<p><ul>
+  <li>Gruppenmitglied&nbsp;A entnimmt 0&nbsp;Bäume.</li>
+  <li>Gruppenmitglied&nbsp;B entnimmt 0&nbsp;Bäume.</li>
+  <li>Gruppenmitglied&nbsp;C entnimmt 0&nbsp;Bäume.</li>
+</ul></p>
+<p>Die gesamte Gruppe hat somit 0&nbsp;Bäume entnommen.</p>
+
+<h4>Zustand des Waldes nach der Entnahme</h4>
+<p>
+  Zu Beginn der Runde sind 60,5&nbsp;Bäume im Wald vorhanden. Die Gruppe entnimmt 0&nbsp;Bäume. Nach der Entnahme sind 60,5&nbsp;Bäume vorhanden.
+</p>
+
+<div id="forest-5" class="forest"></div>
+{# Image #}
+<br>
+
+<h4>Verdienst in Runde&nbsp;2</h4>
+<h5>Gruppenmitglied&nbsp;A</h5>
+
+<p>
+  Aus der vorherigen Runde hat Gruppenmitglied&nbsp;A 60&nbsp;Punkte. 
+</p>
+<p>
+  Gruppenmitglied&nbsp;A erhält 0&nbsp;Punkte für die entnommenen Bäume. In dieser Runde erhält Gruppenmitglied&nbsp;A insgesamt 0&nbsp;Punkte.
+</p>
+<p>
+  Nach dieser Runde hat Gruppenmitglied&nbsp;A 60&nbsp;Punkte aus der vorherigen Runde + 0&nbsp;Punkte aus entnommenen Bäumen = 60&nbsp;Punkte.
+</p>
+
+<h5>Gruppenmitglied&nbsp;B</h5>
+
+<p>
+  Aus der vorherigen Runde hat Gruppenmitglied&nbsp;B 54&nbsp;Punkte. 
+</p>
+<p>
+  Gruppenmitglied&nbsp;B erhält 0&nbsp;Punkte für die entnommenen Bäume. In dieser Runde erhält Gruppenmitglied&nbsp;B insgesamt 0&nbsp;Punkte.
+</p>
+<p>
+  Nach dieser Runde hat Gruppenmitglied&nbsp;B 54&nbsp;Punkte aus der vorherigen Runde + 0&nbsp;Punkte aus entnommenen Bäumen = 54&nbsp;Punkte.
+</p>
+
+<h5>Gruppenmitglied&nbsp;C</h5>
+
+<p>
+  Aus der vorherigen Runde hat Gruppenmitglied&nbsp;C 56&nbsp;Punkte. 
+</p>
+<p>
+  Gruppenmitglied&nbsp;C erhält 0&nbsp;Punkte für die entnommenen Bäume. In dieser Runde erhält Gruppenmitglied&nbsp;C insgesamt 0&nbsp;Punkte.
+</p>
+<p>
+  Nach dieser Runde hat Gruppenmitglied&nbsp;C 56&nbsp;Punkte aus der vorherigen Runde + 0&nbsp;Punkte aus entnommenen Bäumen = 56&nbsp;Punkte.
+</p>
+
+
+<h4>Zustand des Waldes am Ende von Runde&nbsp;2</h4>
+<p>Nach der Entnahme sind 60,5&nbsp;Bäume vorhanden. Aufgrund der Wachstumsrate von 10&#8239;% wachsen 6,05&nbsp;Bäume nach. Am Ende der Runde sind 66,55&nbsp;Bäume vorhanden.</p>
+<div id="forest-6" class="forest"></div>
+{# Image #}
+<br>
+<br>
+<h3>Runde&nbsp;3</h3>
+
+<p>Zu Beginn der Runde sind 66,55&nbsp;Bäume im Wald vorhanden. </p>
+
+<div id="forest-7" class="forest"></div>
+{# Image #}
+<br>
+<h4>Entscheidungen der drei Gruppenmitglieder</h4>
+<p><ul>
+  <li>Gruppenmitglied&nbsp;A entnimmt 1&nbsp;Baum.</li>
+  <li>Gruppenmitglied&nbsp;B entnimmt 3&nbsp;Bäume.</li>
+  <li>Gruppenmitglied&nbsp;C entnimmt 7&nbsp;Bäume.</li>
+</ul></p>
+<p>Die gesamte Gruppe hat 11&nbsp;Bäume entnommen.</p>
+
+<h4>Zustand des Waldes nach der Entnahme</h4>
+<p>
+  Zu Beginn der Runde sind 66,55&nbsp;Bäume im Wald vorhanden. Die Gruppe entnimmt 11&nbsp;Bäume. Nach der Entnahme sind 55,55&nbsp;Bäume vorhanden.
+</p>
+
+<div id="forest-8" class="forest"></div>
+<br>
+<h4>Verdienst in Runde&nbsp;3</h4>
+
+<h5>Gruppenmitglied&nbsp;A</h5>
+
+<p>
+  Aus der vorherigen Runde hat Gruppenmitglied&nbsp;A 60&nbsp;Punkte. 
+</p>
+<p>
+  Gruppenmitglied&nbsp;A erhält 2&nbsp;Punkte für die entnommenen Bäume. In dieser Runde erhält Gruppenmitglied&nbsp;A insgesamt 2&nbsp;Punkte.
+</p>
+<p>
+  Nach dieser Runde hat Gruppenmitglied&nbsp;A 60&nbsp;Punkte aus der vorherigen Runde + 2&nbsp;Punkte aus entnommenen Bäumen = 62&nbsp;Punkte.
+</p>
+
+<h5>Gruppenmitglied&nbsp;B</h5>
+
+<p>
+  Aus der vorherigen Runde hat Gruppenmitglied&nbsp;B 54&nbsp;Punkte. 
+</p>
+<p>
+  Gruppenmitglied&nbsp;B erhält 6&nbsp;Punkte für die entnommenen Bäume. In dieser Runde erhält Gruppenmitglied&nbsp;B insgesamt 6&nbsp;Punkte.
+</p>
+<p>
+  Nach dieser Runde hat Gruppenmitglied&nbsp;B 54&nbsp;Punkte aus der vorherigen Runde + 6&nbsp;Punkte aus entnommenen Bäumen = 60&nbsp;Punkte.
+</p>
+
+<h5>Gruppenmitglied&nbsp;C</h5>
+
+<p>
+  Aus der vorherigen Runde hat Gruppenmitglied&nbsp;C 56&nbsp;Punkte. 
+</p>
+<p>
+  Gruppenmitglied&nbsp;C erhält 14&nbsp;Punkte für die entnommenen Bäume. In dieser Runde erhält Gruppenmitglied&nbsp;C insgesamt 14&nbsp;Punkte.
+</p>
+<p>
+  Nach dieser Runde hat Gruppenmitglied&nbsp;C 56&nbsp;Punkte aus der vorherigen Runde + 14&nbsp;Punkte aus entnommenen Bäumen = 70&nbsp;Punkte.
+</p>
+
+
+<h4>Zustand des Waldes am Ende von Runde&nbsp;3</h4>
+<p>Nach der Entnahme sind 55,55&nbsp;Bäume vorhanden. Aufgrund der Wachstumsrate von 10&#8239;% wachsen 5,6&nbsp;Bäume nach. Am Ende der Runde sind 61,15&nbsp;Bäume vorhanden.</p>
+<div id="forest-9" class="forest"></div>
+
+<p><h5>Auftreten eines Waldbrandes</h5></p>
+
+<p>Wäre nun ein Waldbrand in diesem Gemeinschaftswald ausgebrochen, würde sich die Anzahl der verbliebenen Bäume um 50% reduzieren. Das heißt, es wären nicht mehr
+  61,15 Bäume im Wald vorhanden, sondern nur noch 61,15 Bäume x 0,5 = 30,58 Bäume. Damit würde sich auch die Gesamtauszahlung ändern, was im nächsten Abschnitt genauer veranschaulicht wird.   </p>
+  <div id="forest-10" class="forest"></div>
+
+<br>
+<br>
+<h3>Gesamtauszahlung nach Runde&nbsp;3 ohne Waldbrand</h3>
+<p>Nehmen Sie an, dass Runde&nbsp;3 die letzte Runde ist. Nun erhält jedes Gruppenmitglied einen gleichen Anteil an dem Wert des Waldes. 60,5&nbsp;Bäume sind im Wald verblieben. Diese haben einen Wert von 121&nbsp;Punkten. Nun wird der Wert zu 242&nbsp;Punkten verdoppelt.
+</p>
+<p>
+Jedes Gruppenmitglied erhält nun einen gleichen Anteil von 242/3 = 80,7&nbsp;Punkten.
+</p>
+<p><ul>
+  <li>Gruppenmitglied&nbsp;A erhält insgesamt 50&nbsp;Punkte (Startguthaben) + 10&nbsp;Punkte (Runde&nbsp;1) + 0&nbsp;Punkte (Runde&nbsp;2) + 2&nbsp;Punkte (Runde&nbsp;3) + 80,7&nbsp;Punkte (Anteil am Wert des Waldes am Ende der letzten Runde) = 142,7&nbsp;Punkte.</li>
+  <li>Gruppenmitglied&nbsp;B erhält insgesamt 50&nbsp;Punkte (Startguthaben) + 4&nbsp;Punkte (Runde&nbsp;1) + 0&nbsp;Punkte (Runde&nbsp;2) + 6&nbsp;Punkte (Runde&nbsp;3) + 80,7&nbsp;Punkte (Anteil am Wert des Waldes am Ende der letzten Runde) = 140,7&nbsp;Punkte.</li>
+  <li>Gruppenmitglied&nbsp;C erhält insgesamt 50&nbsp;Punkte (Startguthaben) + 6&nbsp;Punkte (Runde&nbsp;1) + 0&nbsp;Punkte (Runde&nbsp;2) + 14&nbsp;Punkte (Runde&nbsp;3) + 80,7&nbsp;Punkte (Anteil am Wert des Waldes am Ende der letzten Runde) = 150,7&nbsp;Punkte.</li>
+</ul></p>
+
+
+<h3>Gesamtauszahlung nach Runde&nbsp;3 mit Waldbrand</h3>
+<p>Nehmen Sie an, dass Runde&nbsp;3 die letzte Runde ist. Nun erhält jedes Gruppenmitglied einen gleichen Anteil an dem Wert des Waldes. 60,5&nbsp;Bäume werden um 50% durch den Waldbrand reduziert, sodass 30,58 Bäume im Wald übrig bleiben. Diese haben einen Wert von 61,16&nbsp;Punkten. Nun wird der Wert zu 122,32&nbsp;Punkten verdoppelt.
+</p>
+<p>
+Jedes Gruppenmitglied erhält nun einen gleichen Anteil von 122,32/3 = 40,7&nbsp;Punkten.
+</p>
+<p><ul>
+  <li>Gruppenmitglied&nbsp;A erhält insgesamt 50&nbsp;Punkte (Startguthaben) + 10&nbsp;Punkte (Runde&nbsp;1) + 0&nbsp;Punkte (Runde&nbsp;2) + 2&nbsp;Punkte (Runde&nbsp;3) + 40,7&nbsp;Punkte (Anteil am Wert des Waldes am Ende der letzten Runde) = 102,7&nbsp;Punkte.</li>
+  <li>Gruppenmitglied&nbsp;B erhält insgesamt 50&nbsp;Punkte (Startguthaben) + 4&nbsp;Punkte (Runde&nbsp;1) + 0&nbsp;Punkte (Runde&nbsp;2) + 6&nbsp;Punkte (Runde&nbsp;3) + 40,7&nbsp;Punkte (Anteil am Wert des Waldes am Ende der letzten Runde) = 100,7&nbsp;Punkte.</li>
+  <li>Gruppenmitglied&nbsp;C erhält insgesamt 50&nbsp;Punkte (Startguthaben) + 6&nbsp;Punkte (Runde&nbsp;1) + 0&nbsp;Punkte (Runde&nbsp;2) + 14&nbsp;Punkte (Runde&nbsp;3) + 40,7&nbsp;Punkte (Anteil am Wert des Waldes am Ende der letzten Runde) = 110,7&nbsp;Punkte.</li>
+</ul></p>
+
+<div id="next-button" style="display: none;">
+    {{ next_button }}
+</div>
+
+{{ endblock }}
+
+
+{{ block scripts }}
+
+<script>
+
+var tree_img = new Image();
+tree_img.src = "{{static 'Tree.png'}}";
+tree_img.classList.add("tree")
+
+var tree_stump_img = new Image();
+tree_stump_img.src = "{{static 'Tree_stump.png'}}"
+tree_stump_img.style.position = "absolute"
+
+const forest = document.querySelectorAll('.forest');
+
+function showTreeStumps() {
+  const numberOfStumps = js_vars.INITIAL_TREES;
+
+  for (var n = 0; n < numberOfStumps; n++) {
+    let stumpCell = document.createElement("div");
+    stumpCell.id = "cell_"+n;
+    stumpCell.classList.add("cell");
+    stumpCell.appendChild(tree_stump_img.cloneNode());
+    for (var i = 0; i < forest.length; i++) {
+        let currentStumpCell = stumpCell.cloneNode(true);
+        forest[i].appendChild(currentStumpCell);
+    }
+  }
+}
+
+
+function showInitialTrees() {
+  const numberOfTrees = [65, 55, 60, 60, 60, 66, 66, 55, 61, 30];
+  for (var i = 0; i < forest.length; i++) {
+    let numTrees = numberOfTrees[i];
+    let currentForest = forest[i];
+    console.log(numTrees, currentForest);
+
+    for (var j = 0; j < numTrees; j++) {
+        let cell = currentForest.querySelector("#cell_"+j);
+        cell.appendChild(tree_img.cloneNode());
+    }
+  }
+}
+
+
+showTreeStumps()
+
+showInitialTrees()
+
+setTimeout(function() {
+    document.getElementById("next-button").style.display = "block";
+}, 60*1000) // 1 minute
+
+</script>
+
+{{ endblock }}

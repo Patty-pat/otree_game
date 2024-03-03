@@ -1,0 +1,28 @@
+{{ block title }}
+Instruktionen für Teil {{C.STAGE}}
+{{ endblock }}
+
+{{ block content }}
+
+{{ include "_templates/global/Instructions.html" }}
+
+<div id="next-button" style="display: none">
+    {{ next_button }}
+</div>
+
+{{ endblock }}
+
+
+{{ block scripts}}
+
+<script>
+
+setTimeout(function() {
+    document.getElementById("next-button").style.display = "block";
+}, 60*1000) // 1 minute
+
+</script>
+
+{{ endblock }}
+
+

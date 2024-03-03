@@ -1,0 +1,29 @@
+{{ block title }}
+    Fragebogen
+{{ endblock }}
+
+
+{{ block content }}
+<p>
+    <b>
+    Wie gut beschreibt jede der nachfolgenden Aussagen Sie als Person? </b>
+    Bitte verwenden Sie eine Skala von 0 bis 10. 
+</p>
+<p>
+    0 bedeutet <i>&bdquo;beschreibt mich überhaupt nicht&ldquo; </i> und 10 <i>&bdquo;beschreibt mich perfekt&ldquo;</i>.
+</p>
+<p>
+    {{ formfields }}
+</p>
+
+    {{ next_button }}
+
+<script>
+    var likertScales = document.getElementsByClassName("controls")
+    for (let i = 0; i < likertScales.length; i++) {
+        var temp = likertScales[i].innerHTML;
+        likertScales[i].innerHTML = "überhaupt nicht&nbsp;&nbsp;&nbsp;&nbsp;" + temp + "perfekt";
+    }
+</script>
+
+{{ endblock }}

@@ -1,0 +1,270 @@
+{{ block styles }}
+
+<style>
+/*
+.forest {
+  padding: 2pt;
+  display: grid;
+  width: max-content;
+  grid-template-columns: repeat(20, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 1pt;
+}
+
+.cell {
+  width: 6vh;
+  height: 6vh;
+  position: relative;
+}
+
+.cell img {
+  max-width: 6vh;
+  max-height: 6vh;
+  object-fit: cover;
+  object-position: center center;
+  position: absolute;
+  transition: opacity 6s ease;
+}
+*/
+
+.forest {
+  padding: 2pt;
+  display: grid;
+  width: max-content;
+  grid-template-columns: repeat(20, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 1pt;
+}
+
+.cell {
+  width: 45px;
+  height: 45px;
+  position: relative;
+}
+
+.cell img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  transition: opacity 6s ease;
+}
+
+.tree {
+  transition: opacity 6s ease;
+}
+
+.image-filter {
+  filter: contrast(30%) blur(1pt);
+  transition: filter 6s ease; /*the transition isn't working */
+}
+
+.fade-out {
+  opacity: 0;
+}
+
+</style>
+
+{{ endblock }}
+
+{{ block title }}
+    Runde {{ group.round_number }}
+{{ endblock }}
+
+
+{{ block content }}
+
+<div class="forest">
+</div>
+
+<p>
+<div id="player-take" style="display: none;">
+Sie haben diese Runde {{ player.participant.take }} {{if player.participant.take == 1 }}Baum{{ else }}Bäume{{endif}} entnommen. Für diese{{if player.participant.take == 1}}n{{endif}} haben Sie 
+{{ player.points }} Punkte erhalten.
+</div> 
+</p>
+
+<p>
+<div id="trees-after-take" style="display: none;">
+Im Wald standen {{ current_trees_before }} Bäume.
+Ihre Gruppe hat in dieser Runde insgesamt 
+{{ group.total_group_take }} {{if group.total_group_take == 1 }}Baum{{ else}}Bäume{{ endif }} entnommen. Damit bleiben {{ group.current_trees_after_take }} Bäume
+übrig.
+</div>
+</p>
+
+<p>
+<div id="trees-regrow" style="display: none;">
+Da für jeden zehnten Baum einer nachwächst{{ if player.round_number == 1 }} (Wachstumsrate von 10&#8239;%){{ endif }}, {{ if group.regrowth == 1 }}ist 
+{{ group.regrowth }} Baum {{ else }}sind {{ group.regrowth }} Bäume {{ endif }} nachgewachsen.
+Aktuell stehen {{ group.current_trees }} Bäume im Wald.
+</div>
+</p>
+
+<p>
+  <div id="player-balance" style="display: none;">
+    {# mit Kontostand: Ihr aktueller Kontostand inklusive der {{ player.points }} Punkte für Ihre entnommenen 
+{{ player.participant.take }} Bäume beträgt {{ player.balance }} Punkte.#}
+
+<p>
+  Insgesamt haben Sie diese Runde damit {{ change }} Punkte erhalten.
+</p>
+</div>
+</p>
+
+
+<div id="next-button" style="display: none;">
+  {{ if group.round_number < C.NUM_ROUNDS }}
+    Klicken Sie &bdquo;Weiter&ldquo;, um mit der nächsten Runde zu starten.
+  {{ else }}
+    Klicken Sie &bdquo;Weiter&ldquo;, um zur Auswertung zu gelangen.
+  {{ endif }}
+    <p>{{ next_button }}</p>
+</div>
+  
+{{ endblock }}
+
+{{ block scripts }}
+
+<script>
+var tree_img = new Image();
+tree_img.src = "{{static 'Tree.png'}}";
+tree_img.classList.add("tree")
+
+var tree_stump_img = new Image();
+tree_stump_img.src = "{{static 'Tree_stump.png'}}"
+tree_stump_img.style.position = "absolute";
+
+
+function showInitialTrees() {
+  const forest = document.querySelector('.forest');
+  const numberOfTrees1 = js_vars.current_trees_before;
+  
+  for (var i = 0; i < numberOfTrees1; i++) {
+    let cell = document.getElementById("cell_"+i);
+    cell.appendChild(tree_img.cloneNode());
+  }
+}
+
+function showTreeStumps() {
+  const forest = document.querySelector(".forest");
+  const numberOfStumps = js_vars.INITIAL_TREES;
+
+  for (var n = 0; n < numberOfStumps; n++) {
+    let stumpCell = document.createElement("div");
+    stumpCell.id = "cell_"+n;
+    stumpCell.classList.add("cell");
+    stumpCell.appendChild(tree_stump_img.cloneNode());
+    forest.appendChild(stumpCell);
+  }
+}
+
+function showPlayerTake() {
+  const numberOfTrees1 = js_vars.current_trees_before;
+  const playerTake = js_vars.player_take;
+
+  for (var j = (numberOfTrees1 - playerTake); j < numberOfTrees1; j++) {
+    var image = document.getElementById("cell_"+j).querySelector(".tree");
+    image.classList.add("image-filter");
+  }
+}
+
+function showTreesAfterTake() {
+  const numberOfTrees2 = js_vars.current_trees_after_take
+  const numberOfTrees1 = js_vars.current_trees_before
+
+  for(var k = numberOfTrees2; k < numberOfTrees1; k++) {
+    var image = document.getElementById("cell_"+k).querySelector(".tree");
+    image.classList.add("fade-out")
+  }
+}
+
+function showTreesRegrow() {
+  const forest = document.querySelector('.forest');
+  const numberOfTrees1 = js_vars.current_trees_before
+  const numberOfTrees2 = js_vars.current_trees_after_take
+  const numberOfTrees3 = js_vars.current_trees
+
+  if(numberOfTrees3 > numberOfTrees1) {
+    for(var m = numberOfTrees1; m < numberOfTrees3; m++){
+      let cell = document.getElementById("cell_"+m);
+      cell.appendChild(tree_img.cloneNode());
+    }
+  }
+
+  for(var l = numberOfTrees2; l < numberOfTrees3; l++){
+    fadeIn(document.getElementById("cell_"+l));
+  }
+}
+
+function fadeIn(cell) {
+  var image = cell.querySelector(".tree");
+  image.classList.remove("fade-out", "image-filter");
+  image.style.opacity = 0;
+  setTimeout(function() {
+    image.style.opacity = 1;
+  }, 30);
+};
+
+  const timeoutTake1 = 2000;
+  const timeoutAfterTake1 = 5500;
+  const timeoutRegrowth1 = 9500;
+  const timeoutPoints1 = 27000;
+  const timeoutNextButton1 = 10000;
+
+  const timeoutTakeLater = 1000;
+  const timeoutAfterTakeLater = 2000;
+  const timeoutRegrowthLater = 3500;
+  const timeoutPointsLater = 10000;
+  const timeoutNextButtonLater = 2000;
+
+function showTreeDevelopment() {
+  showTreeStumps();
+
+  showInitialTrees();
+
+  if(js_vars.round_number==1){
+    timeoutTake = timeoutTake1;
+    timeoutAfterTake = timeoutAfterTake1;
+    timeoutRegrowth = timeoutRegrowth1;
+    timeoutPoints = timeoutPoints1;
+    timeoutNextButton = timeoutNextButton1;
+  } else {
+    timeoutTake = timeoutTakeLater;
+    timeoutAfterTake = timeoutAfterTakeLater;
+    timeoutRegrowth = timeoutRegrowthLater;
+    timeoutPoints = timeoutPointsLater;
+    timeoutNextButton = timeoutNextButtonLater;
+  };
+
+  setTimeout(function() {
+    document.getElementById("player-take").style.display = "block";
+    showPlayerTake();
+    
+    setTimeout(function() {
+      document.getElementById("trees-after-take").style.display = "block";
+      showTreesAfterTake();
+      
+      setTimeout(function() {
+        document.getElementById("trees-regrow").style.display = "block";
+        showTreesRegrow();
+        
+      }, timeoutRegrowth); // timeout: group.current_trees/regrowth appears
+    }, timeoutAfterTake); // timeout: group.current_trees_after_take appears
+  }, timeoutTake) // timeout: player.take appears
+  setTimeout(function() {
+    document.getElementById("player-balance").style.display = "block";
+          
+    setTimeout(function() {
+      document.getElementById("next-button").style.display = "block";
+    }, timeoutNextButton); // timeout: next_button appears
+  }, timeoutPoints); // timeout: player.balance/points appears
+}
+
+
+showTreeDevelopment();
+
+
+</script>
+{{ endblock }}
+

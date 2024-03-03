@@ -1,0 +1,70 @@
+{{ block title }}
+Instruktionen für Teil {{C.STAGE}}
+{{ endblock }}
+
+{{ block content }}
+<p>
+    Sie befinden sich in <b>einer ähnlichen</b> Entscheidungssituation wie in Teil 1.
+    </p>
+    <p>Alles, was in Teil 1 galt, gilt auch weiterhin.</p>
+    <p>
+        <button type="button" id="instructions-button" class="btn btn-outline-primary">Instruktionen aus Teil 1 noch einmal anzeigen</button>
+    </p>
+    <div style="display: none;" id="instructions-box" class="card card-body border-primary">
+        {{ include "_templates/global/Instructions.html" }}
+    </div>
+
+    <p><b><u>Zusätzlich gilt nun Folgendes:</u></b></p>
+        <p>
+            Aufgrund des Klimawandels kommt es zu einer anhaltenden Hitze, die in Ihrem Gemeinschaftswald für Dürre sorgt. Dadurch steigt das Risiko eines Waldbrandes. 
+        </p>
+        <p>
+            Falls ein Waldbrand eintritt, dann bricht er am Ende der 5. Runde aus (d.h., nachdem 10% der verbliebenen Bäume nachgewachsen sind). <b>Der Waldbrand verringert die Anzahl der verbliebenen Bäume in Ihrem Gemeinschaftswald um 50%.</b>
+        </p>
+        {{ if participant.high_probability == 1 }}
+        <p>
+            Die Wahrscheinlichkeit eines Waldbrandes liegt bei <b>80%</b>.  
+        </p>
+        {{ else }}
+        </p>
+        Die Wahrscheinlichkeit eines Waldbrandes liegt bei <b>20%</b>.
+        <p>
+        {{ endif }}
+        
+        <p>
+            Ihre Gruppe bleibt dieselbe wie zuvor.
+        </p>    
+    
+
+<div id="next-button" style="display: none">
+    {{ next_button }}
+</div>
+
+{{ endblock }}
+
+
+{{ block scripts}}
+
+<script>
+
+setTimeout(function() {
+    document.getElementById("next-button").style.display = "block";
+}, 30*1000) // 1 minute
+    
+    document.getElementById("instructions-button").addEventListener("click", function() {
+        instr = document.getElementById("instructions-box");
+        instrButton = document.getElementById("instructions-button");
+        if (instr.style.display == "none") {
+            instr.style.display = "block";
+            instrButton.innerHTML = "Instruktionen verbergen";
+        } else {
+            instr.style.display = "none";
+            instrButton.innerHTML = "Instruktionen noch einmal anzeigen";
+        }
+    });
+
+</script>
+
+{{ endblock }}
+
+

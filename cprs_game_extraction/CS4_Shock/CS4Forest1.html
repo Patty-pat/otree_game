@@ -1,0 +1,121 @@
+{{ block styles }}
+
+<style>
+
+.forest {
+  padding: 2pt;
+  display: grid;
+  width: max-content;
+  grid-template-columns: repeat(20, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 1pt;
+}
+
+.cell {
+  width: 45px;
+  height: 45px;
+  position: relative;
+}
+
+.cell img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+}
+
+/*
+.forest {
+  padding: 2pt;
+  display: grid;
+  width: fit-content;
+  grid-template-columns: repeat(20, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 1pt;
+}
+
+.cell {
+  width: 6vh;
+  height: 6vh;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.cell img {
+  max-width: 6vh;
+  max-height: 6vh;
+  object-fit: cover;
+  object-position: center center;
+  position: absolute;
+}
+*/
+
+</style>
+
+{{ endblock }}
+
+{{ block title }}
+Runde {{ group.round_number }}
+{{ endblock }}
+
+{{ block content }}
+
+<div class="forest">
+</div>
+<p>
+    Im Wald stehen {{ group.current_trees }} Bäume.
+</p>
+{{if group.round_number == 1}}
+<p>
+In dieser Runde kann jedes Gruppenmitglied {{C.MIN_TAKE}} bis {{C.MAX_TAKE7}} Bäume entnehmen.
+</p>
+{{else}}
+<p>
+  In dieser Runde kann jedes Gruppenmitglied {{C.MIN_TAKE}} bis {{group.ceiling_group_take}} Bäume entnehmen.
+</p>
+{{endif}}
+
+
+    {{ formfields }}
+
+    {{ next_button }}
+
+{{ endblock }}
+
+{{ block scripts }}
+
+<script>
+
+function showTreeStumps() {
+  const forest = document.querySelector('.forest');
+  const numberOfStumps = js_vars.INITIAL_TREES;
+
+  for (var i = 0; i < numberOfStumps; i++) {
+    let stumpCell = document.createElement('div');
+    stumpCell.id = "cell_"+i
+    stumpCell.classList.add('cell');
+    var tree_stump_img = new Image();
+    tree_stump_img.src = "{{static 'Tree_stump.png'}}";
+    stumpCell.appendChild(tree_stump_img);
+    forest.appendChild(stumpCell)
+  }
+}
+
+function showTrees() {
+  const forest = document.querySelector('.forest');
+  const numberOfItems = js_vars.current_trees;
+  
+  for (var j = 0; j < numberOfItems; j++) {
+    var tree_img = new Image();
+    tree_img.src = "{{static 'Tree.png'}}";
+    var cell = document.getElementById("cell_"+j);
+    cell.appendChild(tree_img);
+  }
+}
+
+showTreeStumps()
+showTrees()
+
+</script>
+{{ endblock }}

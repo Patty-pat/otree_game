@@ -1,0 +1,56 @@
+{{ block title }}
+    Kontrollfragen Teil {{C.STAGE}}
+{{ endblock }}
+
+{{ block content }}
+<p>
+Im Folgenden werden Sie einige kurze Kontrollfragen beantworten. Wir nutzen diese Kontrollfragen 
+lediglich dazu, um sicherzustellen, dass alle Studienteilnehmenden die Entscheidungssituation verstanden 
+haben. Ihre Antworten zu den Kontrollfragen haben keinen Einfluss auf Ihre Auszahlung. 
+</p>
+<p>
+    <button type="button" id="instructions-button" class="btn btn-outline-primary">Instruktionen für Teil 2 einmal anzeigen</button>
+</p>
+<div style="display: none;" id="instructions-box" class="card card-body border-primary">
+{{ include "_templates/global/Instructions2_v2.html" }}
+</div>
+
+{{ formfields }}
+
+{{ next_button }}
+    
+{{ endblock }}
+
+
+{{ block scripts }}
+
+<script>
+    
+    document.getElementById("instructions-button").addEventListener("click", function() {
+        instr = document.getElementById("instructions-box");
+        instrButton = document.getElementById("instructions-button");
+        if (instr.style.display == "none") {
+            instr.style.display = "block";
+            instrButton.innerHTML = "Instruktionen verbergen";
+        } else {
+            instr.style.display = "none";
+            instrButton.innerHTML = "Instruktionen für Teil 2 einmal anzeigen";
+        }
+    });
+
+const solutions = {compr1: 1, compr2: 0, compr3: 7, compr4: 1, compr5: 0};
+
+for (i=1; i < solutions.length+1; i++){ // not working!
+    j = i-1;
+    if (document.getElementById("id_compr"+i).value != solutions.j) {
+        console.log("solutions.j");
+        alert("Sie haben Frage {i} falsch beantwortet.");
+    }
+}
+
+document.querySelectorAll(".otree-form-errors").innerHTML("worked") // not working!
+
+
+</script>
+
+{{ endblock }}

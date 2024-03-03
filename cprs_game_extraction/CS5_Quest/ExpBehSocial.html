@@ -1,0 +1,40 @@
+{{ block title }}
+Fragebogen
+{{ endblock }}
+
+{{ block content }}
+<p>
+Eine Möglichkeit in Teil 1 wäre gewesen, dass jedes Gruppenmitglied 3 Bäume pro Runde entnimmt, wodurch der Wald am Ende des Teils aus 100 Bäumen bestehen würde.</p>
+
+<p>
+{{ formfield "strategy" }}
+</p>
+<p>
+{{ formfield "soc_approp_pos" }}
+</p>
+<p>
+{{ formfield "soc_approp_neg" }}
+</p>
+
+<p>
+Neben Ihnen haben bereits andere Personen an dieser Studie teilgenommen. Wenn man sich alle Entscheidungen dieser Personen anschaut, was meinen Sie: In wie viel Prozent der Fälle wurden genau 3 Bäume entnommen?
+</p>
+<p class="slider" style="margin-top: 7px;">
+    <input name="slider_guess" class="form-range" id="slider" type="range" value="0" min="0" max="100" step="0.1" oninput="this.nextElementSibling.value = Number(this.value).toFixed(1); showButton();">
+    <output style="width: 40px; text-align: right;">0.0</output>%
+</p>
+
+<div id="next-button" style="display: none;">
+{{ next_button }}
+</div>
+
+{{ endblock }}
+
+
+{{ block scripts }}
+
+<script>
+function showButton() {document.getElementById("next-button").style.display = "block"}
+</script>
+
+{{ endblock }}

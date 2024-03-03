@@ -1,0 +1,24 @@
+{{ block title }}
+Vielen Dank für Ihre Teilnahme!
+{{ endblock }}
+
+{{ block content }}
+<p>
+Dies ist das Ende der heutigen Studie.
+</p>
+<p>
+Wie eingangs erwähnt, wurde einer der drei Teile der Studie zufällig ausgewählt, um Ihren Auszahlungsbetrag zu berechnen.
+</p>
+<p>
+Für Sie wurde Teil&nbsp;{{ player.paid_stage }} ausgewählt. In diesem Teil haben Sie {{player.stage_points}}&nbsp;Punkte erhalten. Umgerechnet ergibt das einen Verdienst von {{ player.participant.game_payoff }}.
+</p>
+<p>
+Ihre Gesamtauszahlung zusammen mit der Vergütung für den Fragebogen von {{ C.SHOWUP_FEE }} beträgt damit {{ player.participant.payoff }}.
+</p>
+<p>
+Bitte bleiben Sie ruhig an Ihrem Platz sitzen, bis Sie zur Auszahlung aufgerufen werden. Sie dürfen gerne während der Wartezeit lautlos Ihr Mobiltelefon benutzen, solange Sie die anderen Studienteilnehmenden nicht stören.
+</p>
+
+{{ endblock }}
+
+

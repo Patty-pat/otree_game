@@ -1,0 +1,59 @@
+{{ block title }}
+    Fragebogen
+{{ endblock }}
+
+
+{{ block styles }}
+<style>
+    .do-not-show {
+        display: none;
+    }
+</style>
+{{ endblock }}
+
+
+{{ block content }}
+<p>
+Bitte denken Sie darüber nach, was Sie in der folgenden Situation tun würden.
+</p>
+<p>Sie sind in einer Gegend, in der Sie sich nicht auskennen, und merken, dass Sie sich verlaufen haben. Sie fragen einen Fremden oder eine Fremde nach dem Weg. Der/die Fremde bietet Ihnen an, Sie zum Ziel zu bringen. Ihnen zu helfen kostet den/die Fremde/-n ungefähr 20 Euro insgesamt. Jedoch sagt der/die Fremde, dass er/sie kein Geld von Ihnen möchte. Sie haben sechs Geschenke bei sich. Das billigste Geschenk kostet 5 Euro, das teuerste Geschenk kostet 30 Euro.
+</p>
+<p>Würden Sie eines der Geschenke dem/der Fremden als Dankeschön geben?
+</p>
+
+
+<p>
+
+    {{ formfield "posrec1" }}
+
+<div class="do-not-show" id="posrec1_ifyes-box">
+    Welches der Geschenke?
+    {{ formfield "posrec1_ifyes" }}
+</div>
+
+</p>
+
+
+{{ next_button }}
+
+{{ endblock }}
+
+{{ block scripts }} <!-- roughly from https://stackoverflow.com/questions/75249436/otree-ask-a-question-depending-on-the-answer-to-a-previous-question-on-the-sam -->
+
+<script>
+    let posrec1_ifyes_box = document.getElementById("posrec1_ifyes-box");
+    let posrec1_select = document.getElementById("id_posrec1");
+
+    posrec1_select.addEventListener("change", function() {
+        if (forminputs.posrec1.value == "True") {
+            posrec1_ifyes_box.classList.remove("do-not-show");
+            forminputs.posrec1_ifyes.required = true;
+        } else {
+            posrec1_ifyes_box.classList.add("do-not-show");
+            forminputs.posrec1_ifyes.required = false;
+            forminputs.posrec1_ifyes.value = "";
+        }
+    });
+</script>
+
+{{ endblock }}

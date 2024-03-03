@@ -1,0 +1,56 @@
+{{ block title }}
+Ergebnis
+{{ endblock }}
+
+{{ block content }}
+<p>
+Das war Teil&nbsp;{{ current_stage }} dieser Studie.
+</p>
+
+<p>
+Sie haben in diesem Teil über alle Runden hinweg zusammengerechnet {{ total_player_take }} {{ if total_player_take == 1 }}Baum{{ else }}Bäume{{ endif }} entnommen. Ihre Gruppe hat insgesamt {{ total_group_history_take }} Bäume entnommen.
+</p>
+
+<p>
+Ihr Punktestand nach der Entnahme in der letzten Runde beträgt {{ player.balance }} Punkte (inklusive des Startguthabens von {{C.ENDOWMENT}} Punkten).
+</p>
+{{ if group.is_shock_group == 1}}
+<p>
+    Am Ende der letzten Runde sind noch {{ group.current_trees }} Bäume vorhanden. In Ihrem Gemeinschaftswald ist ein <b>Waldbrand ausgebrochen</b>, wodurch die Anzahl
+    der verbliebenen Bäume nach der 5. Runde um <b>50% reduziert wurde</b>.
+
+    Die verbliebenen Bäume haben einen Wert von {{ trees_after_shock }}&nbsp;Bäumen &times; {{C.MULTIPLIER_TAKE}}&nbsp;Punkten pro Baum = {{ trees_stage_value_aftershock }}&nbsp;Punkten. Nun wird der Wert zu {{ stage_value_aftershock }}&nbsp;Punkten verdoppelt. 
+    Jedes Gruppenmitglied erhält einen gleichen Anteil in Höhe von {{ stage_share_aftershock }} Punkten.
+
+<p>
+    Insgesamt haben Sie in diesem Teil {{ player.stage_points }} Punkte verdient.
+</p>
+{{else}}
+<p>
+    Am Ende der letzten Runde sind noch {{ group.current_trees }} Bäume vorhanden. In Ihrem Gemeinschaftswald ist <b>kein Waldbrand ausgebrochen</b>, 
+    sodass keine Bäumen zerstört wurden.
+
+    Die verbliebenen Bäume haben einen Wert von {{group.current_trees}}&nbsp;Bäumen &times; {{C.MULTIPLIER_TAKE}}&nbsp;Punkten pro Baum = {{ trees_stage_value }}&nbsp;Punkten. Nun wird der Wert zu {{ stage_value }}&nbsp;Punkten verdoppelt. 
+    Jedes Gruppenmitglied erhält davon einen gleichen Anteil in Höhe von {{ stage_share }} Punkten.
+</p>
+<p>
+    Insgesamt haben Sie in diesem Teil {{ player.stage_points }} Punkte verdient.
+</p>
+{{endif}}
+<p>
+Wird dieser Teil am Ende des Experiments zufällig ausgewählt, erhalten Sie den Geldwert der in diesem Teil gesammelten Punkte 
+zusätzlich zu Ihrer Auszahlung für den Fragebogen.
+</p>
+
+<div id="next-button" style="display: none;">
+{{ next_button }}
+</div>
+{{ endblock }}
+
+{{ block scripts }}
+<script>
+setTimeout(function() {
+    document.getElementById("next-button").style.display = "block";
+}, 10000)
+</script>
+{{ endblock }}

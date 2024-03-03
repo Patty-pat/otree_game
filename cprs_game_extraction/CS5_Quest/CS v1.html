@@ -1,0 +1,63 @@
+{{ block title }}
+Fragebogen
+{{ endblock }}
+
+{{ block content }}
+<p>
+Eine Möglichkeit wäre, dass jedes Gruppenmitglied 3 Bäume pro Runde entnimmt, wodurch der Wald am Ende des Teils aus 100 Bäumen bestehen würde.</p>
+
+<p>
+{{ formfield "strategy" }}
+</p>
+<p>
+    {{ formfield "q13" }}
+</p>
+<p>
+    {{ formfield "q14" }}
+</p>
+<p>
+    {{ formfield "q15" }}
+</p>
+<p>
+    {{ formfield "q18"}}
+</p>
+<p>
+    Was glauben Sie: Wie groß ist die prozentuale Wahrscheinlichkeit, dass in Ihrem Wohnort ein Klimaschock auftritt? Bitte wählen Sie die Prozentzahl aus.  
+</p>
+
+<p>0% = ein Klimaschock wird definitiv nicht eintreten
+100% = ein Klimaschock wird definitiv eintreten
+</p>
+<p class="slider" style="margin-top: 7px;">
+    <input name="slider_guess" class="form-range" id="slider" type="range" value="0" min="0" max="100" step="0.1" oninput="this.nextElementSibling.value = Number(this.value).toFixed(1); showButton();">
+    <output style="width: 40px; text-align: right;">0.0</output>%
+</p>
+<p>
+    {{ formfield "q19"}}
+
+    <div class="mb-3 _formfield">
+        <p>Sie müssen mindestens eine Option auswählen (und können mehrere Optionen auswählen).</p>
+        <ol>
+            <li><input type="checkbox" /> Hitzewellen</li>
+            <li><input type="checkbox" /> Wirbelstürme</li>
+            <li><input type="checkbox" /> Überschwemmungen</li>
+            <li><input type="checkbox" /> Dürren</li>
+            <li><input type="checkbox" /> Waldbrände</li>
+            <li><input type="checkbox" /> Extreme Regenfälle</li>
+            <li><input type="checkbox" /> Erdrutsche</li>
+            <li><input type="checkbox" /> Sonstiges</li>
+        </ol>
+    </div>
+</p>
+<p>
+    {{ formfield "q20"}}
+</p>
+
+{{ next_button }}
+
+{{ endblock }}
+
+
+{{ block scripts }}
+
+{{ endblock }}

@@ -1,0 +1,29 @@
+{{ block style }}
+<style>
+    .otree-timer {
+        visibility: hidden;
+    }
+</style>
+{{ endblock }}
+
+{{ block title }}
+    Kontrollfragen
+{{ endblock }}
+
+{{ block content }}
+
+<p>
+Sie haben die Fragen richtig beantwortet.
+</p>
+<p>
+Dies waren die Instruktionen für Teil 2. Sobald alle Teilnehmenden die Kontrollfragen richtig beantwortet haben, erhalten Sie von dem/der Studienleiter/in einen Code. Nach Eingabe des Codes startet Teil 2. Bitte warten Sie bis dahin.
+</p>  
+<p>
+    {{ formfields }}
+</p>
+<p>
+    {{ next_button }}
+</p>
+{{ endblock }}
+
+

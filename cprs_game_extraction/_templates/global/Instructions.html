@@ -1,0 +1,49 @@
+<h4>Allgemeines</h4>
+<p>
+    Sie bilden gemeinsam mit zwei anderen Personen eine Gruppe. Diese Personen nehmen jetzt gerade auch an der Studie hier im BonnEconLab teil. Sie wissen nicht, wer die anderen zwei Personen sind. Ebenso wissen die anderen Gruppenmitglieder nicht, wer Sie sind und wer die jeweils andere Person ist.
+    </p>
+<p>
+    Dieser Teil besteht aus {{C.NUMBER_OF_ROUNDS}}&nbsp;Runden. 
+</p>
+<h4>Entscheidungssituation</h4>
+<p>
+    Als Gruppe verfügen Sie über einen Wald. Jedes Gruppenmitglied trifft in jeder Runde die Entscheidung, wie viele Bäume er/sie aus dem Wald entnehmen möchte.
+</p>
+<p>
+    Zu Beginn der ersten Runde stehen {{ C.INITIAL_TREES }}&nbsp;Bäume im Wald.
+</p>
+<p>
+    Die maximale Anzahl, die jedes Gruppenmitglied in einer Runde entnehmen kann, sind 7&nbsp;Bäume. Jedes Gruppenmitglied trifft in jeder Runde die Entscheidung, ob er/sie 0, 1, 2, 3, 4, 5, 6 oder 7&nbsp;Bäume entnehmen möchte.
+</p>
+<p>
+    Diese Entscheidung wird zeitgleich getroffen. Am Ende jeder Runde erhält jedes Gruppenmitglied die Information, wie viele Bäume die gesamte Gruppe entnommen hat, nicht aber, wie viele Bäume jedes einzelne Gruppenmitglied entnommen hat.
+</p>
+<h4>Entwicklung des Waldes</h4>
+<p>
+    Wenn Bäume entnommen werden, dann nimmt die Größe des Waldes zunächst ab. Am Ende jeder Runde können Bäume nachwachsen. 
+</p>
+<p>
+    Es wachsen 10&#8239;% der verbliebenen Bäume nach. Nehmen Sie z.&#8239;B. an, dass nach der Entnahme 85&nbsp;Bäume vorhanden sind. 10&#8239;% hiervon sind 8,5 Bäume, sodass am Ende der Runde insgesamt 93,5&nbsp;Bäume vorhanden sind.
+    Sie können allerdings nur vollkommen ausgewachsene Bäume abbauen.
+</p>
+<p>
+    Insgesamt kann der Wald aus maximal {{C.INITIAL_TREES}} Bäumen bestehen. 
+</p>
+<h4>Verdienst</h4>
+<p>
+    Jeder entnommene Baum generiert {{ C.MULTIPLIER_TAKE }}&nbsp;Punkte für die Person, die ihn entnommen hat. Für 0 entnommene Bäume erhält man 0&nbsp;Punkte, für 1 entnommenen Baum erhält man 2&nbsp;Punkte, für 2 entnommene Bäume erhält man 4&nbsp;Punkte usw. Wenn ein Gruppenmitglied 7&nbsp;Bäume entnimmt, erhält er/sie am Ende der Runde 14&nbsp;Punkte.
+</p>
+</p>
+<p>
+    Neben den entnommenen Bäumen generieren die am Ende der {{C.NUMBER_OF_ROUNDS}}.&nbsp;Runde verbliebenen Bäume ebenso Punkte. Der Wert des Waldes ({{ C.MULTIPLIER_TAKE }}&nbsp;Punkte pro verbliebenem Baum) wird hierfür verdoppelt. Dann erhält jedes Gruppenmitglied einen gleichen Anteil des Wertes des Waldes. Nehmen Sie z.&#8239;B. an, dass 15&nbsp;Bäume am Ende der {{C.NUMBER_OF_ROUNDS}}.&nbsp;Runde vorhanden sind. Diese 15&nbsp;Bäume haben einen Wert von 30&nbsp;Punkten. Dieser Wert wird auf 60&nbsp;Punkte verdoppelt. Jedes Gruppenmitglied erhält nun einen gleichen Anteil dieser 60&nbsp;Punkte, also 20&nbsp;Punkte.
+</p>
+<p>
+    Zusätzlich erhält jedes Gruppenmitglied zu Beginn der 1. Runde {{C.ENDOWMENT}}&nbsp;Punkte als Startguthaben. 
+</p>
+<p>
+    Die Punkte, die Sie in den einzelnen Runden generiert haben, werden mit Ihrem Startguthaben zusammen addiert.
+</p>
+<p>
+    Am Ende der Studie werden die Punkte in reales Geld umgewandelt. Hierbei wird jeweils <b>1&nbsp;Punkt in 9&nbsp;Cent umgewandelt.</b>
+</p>
+    
